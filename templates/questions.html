@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{qst.title}} | SpeedSter
+{% endblock %}
+
+  {% block content %}
+  <br>
+  <div class="container">
+    <h5>{{qst.title}}</h5> 
+    posted by {{qst.user}} <br>
+    <h3 id="name" style="color:green">0</h3> <button id="btn"  style="color:green">LIKE</button>
+        <h3 id="name1" style="color:red">0</h3> <button id="btn1" style="color:red">DISLIKE</button><hr>
+    <script>
+// to create counter for like and dislike using javascript
+            var a=document.getElementById("name")
+            var a1=document.getElementById("name1")
+    
+      
+      var counter=1;
+      var counter1=1;
+      
+      
+      var button=document.getElementById("btn")
+      function abc()
+      {
+      a.innerHTML=counter;
+      counter++;
+      a.style.color="green"
+      }
+      button.addEventListener("click",abc)
+      
+      //================================================================
+      
+      var button=document.getElementById("btn1")
+      function def()
+      {
+          a1.innerHTML=counter1
+          counter1++;
+          a1.style.color="red"  
+      }
+      button.addEventListener("click",def)
+      
+          </script>
+    
+    <p>{{qst.body}}</p>
+   
+    <br>
+    {% for i in ans %}
+        {{i.text}}  <br> |  {{i.user}}  <!--  <h3 id="name">0</h3> <button id="btn"  style="color:green">LIKE</button>
+        <h3 id="name1">0</h3> <button id="btn1" style="color:red">DISLIKE</button><hr> -->
+        
+    {% endfor %}
+    <br>
+    {% if user.is_authenticated %}
+    <form action="{% url 'answer_view' qst.id %}"method="post">
+      {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" name="submit" value="submit"><br><br>       
+    </form>
+   
+   
+
+
+
+
+
+
+    {% endif %}
+
+  </div>
+  {% endblock %}

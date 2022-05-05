@@ -1,0 +1,31 @@
+<!-- this is aboutus page -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1 class="login_head">About Us</h1>
+  <br>
+  <p>Xplore is a Q and A page developed to build connection and share knowledge with people. 
+    Might be a highly difficult question or a easy-peasy one ,
+     you can always find answers to all of them on this webpage.     
+    To sum up, this page provides the perfect mix of fun and information.
+      </p>
+
+<br>
+      <p><h4>For any queries mail us at xploreQandA@gmail.com</h4></p>
+
+    
+    
+    <form method="post" action="{% url 'login' %}">
+      
+      {% csrf_token %}
+      {{form.as_p}}
+      
+    </form>
+
+
+   
+</div>
+
+{% endblock %}
